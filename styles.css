@@ -1,0 +1,36 @@
+/* Загальні стилі */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+/* Сітка галереї */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Три колонки */
+  gap: 42px; /* Горизонтальні та вертикальні відступи між зображеннями */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 1254px; /* Загальна ширина секції */
+  height: auto; /* Висота визначатиметься зображеннями */
+}
+
+/* Елементи галереї */
+.gallery li {
+  overflow: hidden;
+  height: 263px; /* Фіксована висота для кожного зображення */
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Заповнює контейнер і зберігає пропорції */
+  display: block;
+  cursor: pointer; /* Вказівник на елемент */
+}
