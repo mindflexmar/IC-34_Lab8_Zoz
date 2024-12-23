@@ -46,32 +46,19 @@ const images = [
   },
 ];
 
-const galleryContainer = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery');
 
-const galleryMarkup = images
+// Генеруємо розмітку
+const markup = images
   .map(
     ({ preview, original, description }) =>
-      `<li class="gallery-item">
-         <a href="${original}" class="gallery-link">
-           <img class="gallery-image" src="${preview}" data-source="${original}" alt="${description}" />
-         </a>
-       </li>`
+      `<li>
+        <a href="${original}">
+          <img src="${preview}" alt="${description}">
+        </a>
+      </li>`
   )
   .join('');
 
-galleryContainer.innerHTML = galleryMarkup;
-
-// Делегування подій
-galleryContainer.addEventListener('click', (event) => {
-  event.preventDefault();
-  const isImage = event.target.classList.contains('gallery-image');
-  if (!isImage) return;
-
-  const largeImageUrl = event.target.dataset.source;
-
-  const instance = basicLightbox.create(`
-    <img src="${largeImageUrl}" alt="${event.target.alt}">
-  `);
-
-  instance.show();
-});
+// Вставляємо розмітку у DOM
+gallery.innerHTML = markup;
