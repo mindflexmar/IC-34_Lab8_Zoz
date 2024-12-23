@@ -46,19 +46,37 @@ const images = [
   },
 ];
 
-const gallery = document.querySelector('.gallery');
+const galleryContainer = document.querySelector('.gallery');
 
-// Генеруємо розмітку
-const markup = images
-  .map(
-    ({ preview, original, description }) =>
-      `<li>
-        <a href="${original}">
-          <img src="${preview}" alt="${description}">
-        </a>
-      </li>`
-  )
-  .join('');
+// Створення розмітки галереї
+const galleryMarkup = images
+    .map(
+        ({ preview, original, description }) =>
+            `<li class="gallery__item">
+                <img class="gallery__image" src="${preview}" data-source="${original}" alt="${description}" />
+            </li>`
+    )
+    .join('');
 
-// Вставляємо розмітку у DOM
-gallery.innerHTML = markup;
+galleryContainer.innerHTML = galleryMarkup;
+
+// Додавання функціоналу відкриття модального вікна
+galleryContainer.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const target = event.target;
+    if (target.nodeName !== 'IMG') return;
+
+    const largeImageSrc = target.dataset.source;
+
+    const instance = basicLightbox.create(`
+        <div class="modal">
+            <img src="${largeImageSrc}" alt="${target.alt}">
+        </div>
+    `, {
+        // Налаштування для прозорого фону
+        className: 'custom-overlay',
+    });
+
+    instance.show();
+});

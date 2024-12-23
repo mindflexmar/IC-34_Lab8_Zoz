@@ -35,3 +35,26 @@ body {
   display: block;
   cursor: pointer; /* Вказівник на елемент */
 }
+
+.gallery__item {
+  flex: 1 0 calc(33.333% - 10px);
+}
+
+.gallery__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.basicLightbox--visible .basicLightbox__placeholder {
+  background: rgba(0, 0, 0, 0.8); /* Напівпрозорий чорний фон */
+}
+
+.modal img {
+  display: block;
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: auto;
+}
